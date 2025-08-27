@@ -9,7 +9,7 @@
 请补全下面的函数，实现计算面积的功能。
 """
 
-def calculate_area(length, width=None):
+def calculate_area(length, width=None):#默认参数的使用
     """
     计算面积
     
@@ -21,4 +21,9 @@ def calculate_area(length, width=None):
     - 计算得到的面积
     """
     # 请在下方编写代码
+
+    if width == None:
+        return length * length
+    else:
+        return length * width
     pass 
