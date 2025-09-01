@@ -26,6 +26,23 @@ def get_website_content(url):
     # 请在下方编写代码
     # 使用requests.get()发送GET请求
     # 返回包含状态码、内容和头部信息的字典
+    import requests
+    try:
+        # 发送GET请求
+        response = requests.get(url)
+        # 返回包含状态码、内容和头部信息的字典
+        return {
+            'status_code': response.status_code,
+            'content': response.text,
+            'headers': response.headers
+        }
+    except requests.RequestException as e:
+        print(f"GET请求失败: {e}")
+        return {
+            'status_code': None,
+            'content': None,
+            'headers': None
+        }
     pass
 
 def post_data(url, data):
@@ -47,4 +64,21 @@ def post_data(url, data):
     # 请在下方编写代码
     # 使用requests.post()发送POST请求
     # 返回包含状态码、响应JSON和成功标志的字典
+    import requests
+    try:
+        # 发送POST请求
+        response = requests.post(url, json=data)
+        # 返回包含状态码、响应JSON和成功标志的字典
+        return {
+            'status_code': response.status_code,
+            'response_json': response.json() if response.headers.get('Content-Type') == 'application/json' else None,
+            'success': 200 <= response.status_code < 300
+        }
+    except requests.RequestException as error:
+        print(f"POST请求失败: {error}")
+        return {
+            'status_code': None,
+            'response_json': None,
+            'success': False
+        }
     pass 
