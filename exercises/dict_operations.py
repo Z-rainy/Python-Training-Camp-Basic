@@ -7,7 +7,7 @@
 请补全下面的函数，对学生成绩字典进行各种操作。
 """
 
-def student_dict_operations(students_dict, operation, *args):
+def student_dict_operations(students_dict, operation, *args):#*args允许函数接收**任意数量的参数**，并将这些参数以**元组**的形式传递给函数。
     """
     对学生字典进行操作
     
@@ -20,4 +20,18 @@ def student_dict_operations(students_dict, operation, *args):
     - 根据操作返回不同结果
     """
     # 请在下方编写代码
+    if operation == "add":
+        new_name, new_score = args
+        students_dict[new_name] = new_score
+        return students_dict
+    elif operation == "remove":
+        del students_dict[args[0]]
+        return students_dict
+    elif operation == "update":
+        origin_name, new_score = args
+        students_dict[origin_name] = new_score
+        return students_dict
+    else:
+        return students_dict.get(args[0])#注意返回值：assert测试的是什么
+    
     pass 
